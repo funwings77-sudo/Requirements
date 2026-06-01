@@ -1,0 +1,47 @@
+-- 프로젝트 매니저 — 진척 항목(프로젝트 항목) CRUD 테이블
+CREATE TABLE IF NOT EXISTS project_item (
+  id            INT AUTO_INCREMENT PRIMARY KEY,
+  no            INT NULL COMMENT '번호(정렬·표시용)',
+  sort_order    INT NULL COMMENT '드래그 정렬 순서(NULL=번호 역순 기본)',
+  phase         VARCHAR(60)  NULL COMMENT '차수',
+  priority      VARCHAR(10)  NULL COMMENT '우선순위',
+  platform      VARCHAR(60)  NULL COMMENT 'APP/BO/IF 등',
+  item          VARCHAR(200) NOT NULL COMMENT '항목명(필수)',
+  requirement   TEXT NULL COMMENT '주요 요건정의',
+  history       TEXT NULL COMMENT '이슈/History',
+  progress_prev VARCHAR(30)  NULL COMMENT '진행률(지난주)',
+  progress_curr VARCHAR(30)  NULL COMMENT '진행률(이번주)',
+  start_date    DATE NULL COMMENT '최초 시작일',
+  end_date      DATE NULL COMMENT '최종 종료일',
+  final_status  VARCHAR(40)  NULL COMMENT '최종 상태',
+  workdays      VARCHAR(20)  NULL COMMENT '작업일수',
+  attach_plan   VARCHAR(500) NULL COMMENT '기획서 첨부(URL)',
+  attach_des    VARCHAR(500) NULL COMMENT '디자인 첨부(URL)',
+  attach_pub    VARCHAR(500) NULL COMMENT '퍼블리싱 첨부(URL)',
+  plan_status   VARCHAR(40)  NULL,
+  plan_owner    VARCHAR(120) NULL,
+  plan_end      DATE NULL,
+  des_status    VARCHAR(40)  NULL,
+  des_owner     VARCHAR(120) NULL,
+  des_end       DATE NULL,
+  pub_status    VARCHAR(40)  NULL,
+  pub_owner     VARCHAR(120) NULL,
+  pub_end       DATE NULL,
+  dev_status    VARCHAR(40)  NULL,
+  dev_owner     VARCHAR(120) NULL,
+  dev_end       DATE NULL,
+  dev_deploy    DATE NULL COMMENT '개발서버 반영일',
+  qa            VARCHAR(40)  NULL COMMENT '검수여부',
+  prod_deploy   DATE NULL COMMENT '운영서버 반영일',
+  created_at    DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_by    VARCHAR(60) NULL,
+  updated_by    VARCHAR(60) NULL,
+  KEY idx_no (no),
+  KEY idx_status (final_status),
+  KEY idx_platform (platform)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='프로젝트 매니저 진척 항목';
+
+-- 전 회원에게 project_manager 권한 시드(관리자 외 access는 admin이 권한설정에서 조정)
+INSERT IGNORE INTO member_perm (member_id, resource, can_access, can_read, can_write, can_update, can_delete)
+SELECT id, 'project_manager', 1, 1, 0, 0, 0 FROM member;

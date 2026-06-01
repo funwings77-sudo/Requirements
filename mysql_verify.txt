@@ -1,0 +1,4 @@
+﻿server_pid=6092
+killing dud PID 23300
+mysqld_remaining=1
+db_query=14	14

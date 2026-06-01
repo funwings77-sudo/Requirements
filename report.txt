@@ -1,0 +1,7 @@
+﻿ngrok_proc=PID 18436
+tunnel_count=1
+TUNNEL https://city-freezable-italics.ngrok-free.dev -> http://[::1]:8000
+agent_status_err=원격 서버에서 (404) 찾을 수 없음 오류를 반환했습니다.
+port_8000=True
+port_3000=False
+port_3306=False

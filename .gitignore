@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+*.env
+!.env.example
+
+# Logs
+*.log
+php-server.log
+php-server.err.log
+
+# Local DB dumps / backups
+_backup/
+
+# Runtime / tunnel status
+tunnels.json
+ngrok_status.txt
+
+# OS / editor
+Thumbs.db
+.DS_Store

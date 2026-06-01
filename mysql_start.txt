@@ -1,0 +1,6 @@
+﻿before_3306=False
+after_3306=True
+mysqld_count=2
+  mysqld PID 6092
+  mysqld PID 23300
+port3306_owner_pid=6092

@@ -1,0 +1,17 @@
+{
+  "name": "medihim-requirements-api",
+  "version": "1.0.0",
+  "description": "메디힘 요구사항 수집 - MySQL 백엔드 API + 정적 웹 호스팅",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.0"
+  }
+}
